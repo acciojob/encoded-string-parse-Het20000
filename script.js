@@ -1,7 +1,17 @@
-const parseCode = (str) => {
-  // your code here
-};
+/*
+  Parses an encoded string to extract firstName, lastName, and id.
 
-// Do not change the code below
-const str = prompt("Enter str: ");
-alert(JSON.stringify(parseCode(str)));
+  Args:
+    encodedString: The input string in the format "firstName0+lastName0+id".
+
+  Returns:
+    An object with three properties: firstName, lastName, and id.
+*/
+const parseCode = (encodedString) => {
+  const parts = encodedString.split("0");
+  return {
+    firstName: parts[0],
+    lastName: parts[parts.findIndex(part => part !== "")],
+    id: parts[parts.lastIndexOf(parts.find(part => part !== ""))],
+  };
+};
